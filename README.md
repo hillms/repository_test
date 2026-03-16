@@ -92,7 +92,7 @@ Each dataset includes the following information:
 
 To contribute new datasets or suggest improvements:
 
-1. Update the spreadsheet (`Available and Pending Datasets.xlsx`)
+1. Update the spreadsheet (`Available_Pending_Datasets.csv`)
 2. Follow the updating instructions in [`UPDATING.md`](UPDATING.md)
 3. Test the changes locally
 4. Commit and push to GitHub
