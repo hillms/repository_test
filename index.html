@@ -768,11 +768,35 @@ function piCell(d) {
     `;
 }
 
+// ── Sort datasets by Status (Public first) then by Project ID (most recent first)
+function sortDatasets(data) {
+    return [...data].sort((a, b) => {
+        // First sort by status: Public before Pending
+        if (a.status !== b.status) {
+            if (a.status === "Public") return -1;
+            if (b.status === "Public") return 1;
+        }
+
+        // Then sort by project ID (most recent year first)
+        const yearA = parseInt(a.projectId.split('_')[0]);
+        const yearB = parseInt(b.projectId.split('_')[0]);
+        if (yearA !== yearB) {
+            return yearB - yearA; // Most recent year first
+        }
+
+        // If same year, sort by last name alphabetically
+        const nameA = a.projectId.split('_')[1];
+        const nameB = b.projectId.split('_')[1];
+        return nameA.localeCompare(nameB);
+    });
+}
+
 // ── Build table rows ──────────────────────────────────
 function buildRows(data) {
+    const sortedData = sortDatasets(data);
     const tbody = document.getElementById("tableBody");
     tbody.innerHTML = "";
-    data.forEach((d, i) => {
+    sortedData.forEach((d, i) => {
         const tr = document.createElement("tr");
         tr.dataset.index = i;
         tr.innerHTML = `
@@ -831,11 +855,8 @@ function applyFilters() {
     const institution    = document.getElementById("institutionFilter").value;
     const status         = document.getElementById("statusFilter").value;
 
-    const rows = document.querySelectorAll("#tableBody tr");
-    let visible = [];
-
-    rows.forEach((row, i) => {
-        const d = datasets[i];
+    // Filter datasets first
+    let filteredData = datasets.filter(d => {
         const searchText = Object.values(d).join(" ").toLowerCase();
 
         const matchSearch      = !search      || searchText.includes(search);
@@ -846,11 +867,12 @@ function applyFilters() {
         const matchInstitution = !institution || d.institution === institution;
         const matchStatus      = !status      || d.status === status;
 
-        const show = matchSearch && matchHost && matchSample && matchTaxa && matchBuiltEnv && matchInstitution && matchStatus;
-
-        row.classList.toggle("hidden", !show);
-        if (show) visible.push(d);
+        return matchSearch && matchHost && matchSample && matchTaxa && matchBuiltEnv && matchInstitution && matchStatus;
     });
+
+    // Rebuild table with filtered and sorted data
+    buildRows(filteredData);
+    let visible = filteredData;
 
     const info = document.getElementById("resultsInfo");
     info.textContent = `Showing ${visible.length} of ${datasets.length} dataset${datasets.length !== 1 ? "s" : ""}`;
