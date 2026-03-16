@@ -265,6 +265,11 @@
             color: #6b21a8;
         }
 
+        .tag-env {
+            background: #fef7cd;
+            color: #92400e;
+        }
+
         /* Status badges */
         .badge {
             display: inline-block;
@@ -456,6 +461,12 @@
         </select>
     </div>
     <div class="filter-group">
+        <label for="builtEnvironmentFilter">Built Environment</label>
+        <select id="builtEnvironmentFilter">
+            <option value="">All Environments</option>
+        </select>
+    </div>
+    <div class="filter-group">
         <label for="institutionFilter">Institution</label>
         <select id="institutionFilter">
             <option value="">All Institutions</option>
@@ -486,7 +497,8 @@
                 <th>PI / Institution</th>
                 <th>Host</th>
                 <th>Sample Type</th>
-                <th>Sample Size</th>
+                <th>Built Environment</th>
+                <th>Sample Size (n)</th>
                 <th>Microbial Taxa</th>
                 <th>Sequencing Target</th>
                 <th>Accession</th>
@@ -532,9 +544,10 @@
 const datasets = [
     {
         projectId:  "2024_Gray",
-        title:      "Cause vs consequence relationship of gut inflammation and microbial dysbiosis in inflammatory bowel diseases (IBD)",
+        title:      "Gut inflammation and microbial dysbiosis in inflammatory bowel diseases (IBD)",
         host:       "Mouse and Human",
         sampleType: "Fecal",
+        builtEnvironment: "NA",
         sampleSize: "11",
         country:    "US",
         taxa:       "Bacteria",
@@ -552,6 +565,7 @@ const datasets = [
         title:      "Effects of soil exposure on immune response",
         host:       "Mouse",
         sampleType: "Fecal, Lung, Environmental",
+        builtEnvironment: "Laboratory",
         sampleSize: "408",
         country:    "US",
         taxa:       "Bacteria",
@@ -566,19 +580,20 @@ const datasets = [
     },
     {
         projectId:  "2026_PerezCastro",
-        title:      "Household-scale connectivity dominates bacterial and fungal communities in kitchen sinks",
+        title:      "Microbial communities in residential kitchen sinks",
         host:       "Environmental",
         sampleType: "Plumbing, Surface",
+        builtEnvironment: "Home",
         sampleSize: "123",
         country:    "US",
         taxa:       "Bacteria and Fungi",
         seqTarget:  "16S",
         rawLocation:"NCBI SRA",
-        accession:  "PRJNA1392520",
+        accession:  "TBD",
         pi:         "Liesl Jeffers-Francis",
         email:      "ljeffersfrancis@ncat.edu",
         institution:"NC A&T",
-        status:     "Public",
+        status:     "Pending",
         publication:"In Prep"
     },
     {
@@ -586,6 +601,7 @@ const datasets = [
         title:      "Relationship between bariatric surgery, asthma, and gut and lung microbiomes",
         host:       "Mouse",
         sampleType: "Fecal",
+        builtEnvironment: "NA",
         sampleSize: "91",
         country:    "US",
         taxa:       "Bacteria",
@@ -600,9 +616,10 @@ const datasets = [
     },
     {
         projectId:  "2026_Hill",
-        title:      "Temporal stability and niche partitioning of bacterial communities in residential sink P-traps",
+        title:      "Microbial communities in residential bathroom sinks",
         host:       "Environmental",
         sampleType: "Plumbing",
+        builtEnvironment: "Home",
         sampleSize: "144",
         country:    "US",
         taxa:       "Bacteria",
@@ -620,6 +637,7 @@ const datasets = [
         title:      "UNC Charlotte SARS-CoV-2 campus monitoring program",
         host:       "Environmental",
         sampleType: "Wastewater",
+        builtEnvironment: "Mixed Use",
         sampleSize: "38",
         country:    "US",
         taxa:       "Viruses",
@@ -637,6 +655,7 @@ const datasets = [
         title:      "Pathogen Distribution in Bolivian Hospitals",
         host:       "Environmental",
         sampleType: "Plumbing, Air, Surface",
+        builtEnvironment: "Hospital",
         sampleSize: "194",
         country:    "Bolivia",
         taxa:       "Bacteria",
@@ -654,6 +673,7 @@ const datasets = [
         title:      "Pathogen Distribution in Bolivian Hospitals",
         host:       "Environmental",
         sampleType: "Plumbing, Air",
+        builtEnvironment: "Hospital",
         sampleSize: "81",
         country:    "Bolivia",
         taxa:       "Bacteria",
@@ -671,6 +691,7 @@ const datasets = [
         title:      "Pathogen Remediation in Hospital Plumbing",
         host:       "Environmental",
         sampleType: "Plumbing",
+        builtEnvironment: "Hospital",
         sampleSize: "2234",
         country:    "US",
         taxa:       "Bacteria",
@@ -688,6 +709,7 @@ const datasets = [
         title:      "Pathogen Remediation in Hospital Plumbing",
         host:       "Environmental",
         sampleType: "Plumbing",
+        builtEnvironment: "Hospital",
         sampleSize: "68",
         country:    "US",
         taxa:       "Bacteria and Fungi",
@@ -759,6 +781,7 @@ function buildRows(data) {
             <td class="pi-cell">${piCell(d)}</td>
             <td>${d.host ? `<span class="tag tag-host">${d.host}</span>` : `<span class="empty">—</span>`}</td>
             <td>${tagList(d.sampleType, "tag-sample")}</td>
+            <td>${d.builtEnvironment && d.builtEnvironment !== "NA" ? `<span class="tag tag-env">${d.builtEnvironment}</span>` : `<span class="empty">—</span>`}</td>
             <td>${d.sampleSize || `<span class="empty">—</span>`}</td>
             <td>${d.taxa ? `<span class="tag tag-taxa">${d.taxa}</span>` : `<span class="empty">—</span>`}</td>
             <td>${d.seqTarget ? `<span class="tag tag-seq">${d.seqTarget}</span>` : `<span class="empty">—</span>`}</td>
@@ -776,6 +799,7 @@ function populateFilters() {
         hostFilter:        [...new Set(datasets.map(d => d.host).filter(Boolean))].sort(),
         sampleFilter:      [...new Set(datasets.flatMap(d => d.sampleType.split(",").map(s => s.trim())).filter(Boolean))].sort(),
         taxaFilter:        [...new Set(datasets.map(d => d.taxa).filter(Boolean))].sort(),
+        builtEnvironmentFilter: [...new Set(datasets.map(d => d.builtEnvironment).filter(v => v && v !== "NA"))].sort(),
         institutionFilter: [...new Set(datasets.map(d => d.institution).filter(Boolean))].sort()
     };
 
@@ -799,12 +823,13 @@ function updateStats(visible) {
 
 // ── Filter logic ──────────────────────────────────────
 function applyFilters() {
-    const search      = document.getElementById("searchInput").value.toLowerCase();
-    const host        = document.getElementById("hostFilter").value;
-    const sample      = document.getElementById("sampleFilter").value;
-    const taxa        = document.getElementById("taxaFilter").value;
-    const institution = document.getElementById("institutionFilter").value;
-    const status      = document.getElementById("statusFilter").value;
+    const search         = document.getElementById("searchInput").value.toLowerCase();
+    const host           = document.getElementById("hostFilter").value;
+    const sample         = document.getElementById("sampleFilter").value;
+    const taxa           = document.getElementById("taxaFilter").value;
+    const builtEnv       = document.getElementById("builtEnvironmentFilter").value;
+    const institution    = document.getElementById("institutionFilter").value;
+    const status         = document.getElementById("statusFilter").value;
 
     const rows = document.querySelectorAll("#tableBody tr");
     let visible = [];
@@ -817,10 +842,11 @@ function applyFilters() {
         const matchHost        = !host        || d.host === host;
         const matchSample      = !sample      || d.sampleType.split(",").map(s => s.trim()).includes(sample);
         const matchTaxa        = !taxa        || d.taxa === taxa;
+        const matchBuiltEnv    = !builtEnv    || d.builtEnvironment === builtEnv;
         const matchInstitution = !institution || d.institution === institution;
         const matchStatus      = !status      || d.status === status;
 
-        const show = matchSearch && matchHost && matchSample && matchTaxa && matchInstitution && matchStatus;
+        const show = matchSearch && matchHost && matchSample && matchTaxa && matchBuiltEnv && matchInstitution && matchStatus;
 
         row.classList.toggle("hidden", !show);
         if (show) visible.push(d);
@@ -834,7 +860,7 @@ function applyFilters() {
 }
 
 function resetFilters() {
-    ["searchInput","hostFilter","sampleFilter","taxaFilter","institutionFilter","statusFilter"]
+    ["searchInput","hostFilter","sampleFilter","taxaFilter","builtEnvironmentFilter","institutionFilter","statusFilter"]
         .forEach(id => {
             const el = document.getElementById(id);
             el.value = el.tagName === "INPUT" ? "" : "";
@@ -851,6 +877,7 @@ document.getElementById("searchInput").addEventListener("input", applyFilters);
 document.getElementById("hostFilter").addEventListener("change", applyFilters);
 document.getElementById("sampleFilter").addEventListener("change", applyFilters);
 document.getElementById("taxaFilter").addEventListener("change", applyFilters);
+document.getElementById("builtEnvironmentFilter").addEventListener("change", applyFilters);
 document.getElementById("institutionFilter").addEventListener("change", applyFilters);
 document.getElementById("statusFilter").addEventListener("change", applyFilters);
 </script>

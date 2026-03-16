@@ -10,10 +10,10 @@ This guide explains how to add new datasets to the PreMiEr Dataset Repository we
 
 ### Step 1: Update the Spreadsheet
 
-1. **Open** `Available and Pending Datasets.xlsx`
+1. **Open** `Available_Pending_Datasets.csv` (can use Excel, Google Sheets, or text editor)
 2. **Add a new row** with the dataset information
 3. **Fill in all required columns** (see [Data Fields](#data-fields) below)
-4. **Save the spreadsheet**
+4. **Save as CSV format** (if using Excel: Save As → CSV)
 
 ### Step 2: Update the HTML File
 
@@ -29,6 +29,7 @@ This guide explains how to add new datasets to the PreMiEr Dataset Repository we
     title:      "Your project title here",
     host:       "Mouse/Human/Environmental",
     sampleType: "Fecal/Wastewater/Plumbing/etc",
+    builtEnvironment: "Hospital/Home/Laboratory/Mixed Use/NA",
     sampleSize: "123",
     country:    "US/Bolivia/etc",
     taxa:       "Bacteria/Bacteria and Fungi/Viruses",
@@ -93,7 +94,7 @@ Add this to the datasets array:
 
 2. **Add the changed files**:
    ```bash
-   git add "Available and Pending Datasets.xlsx" index.html
+   git add "Available_Pending_Datasets.csv" index.html
    ```
 
 3. **Commit the changes**:
@@ -120,6 +121,7 @@ Add this to the datasets array:
 | `title` | Project title | Keep concise but descriptive |
 | `host` | Organism/environment | Mouse, Human, Environmental |
 | `sampleType` | Sample material | Can be comma-separated list |
+| `builtEnvironment` | Environment type | Hospital, Home, Laboratory, Mixed Use, NA |
 | `sampleSize` | Number of samples | Just the number |
 | `pi` | Principal investigator | Full name |
 | `institution` | PI's institution | Full institution name |

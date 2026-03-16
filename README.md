@@ -13,7 +13,7 @@ This repository contains an interactive webpage that displays available and pend
 | File | Purpose |
 |------|---------|
 | `index.html` | Main webpage - displays the dataset repository |
-| `Available and Pending Datasets.xlsx` | Source data spreadsheet |
+| `Available_Pending_Datasets.csv` | Source data spreadsheet |
 | `README.md` | This documentation file |
 | `UPDATING.md` | Step-by-step guide for adding new datasets |
 

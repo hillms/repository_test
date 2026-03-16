@@ -1,0 +1,33 @@
+﻿Project ID,Project Title,Host,Sample Type,Built Environment,Sample Size (n),Country,Microbial Taxa,Sequencing Target,Location of Raw Files,Accession Number,PI,Email,PI Institution,Status,Publication
+2024_Gray,Gut inflammation and microbial dysbiosis in inflammatory bowel diseases (IBD),Mouse and Human,Fecal,NA,11,US,Bacteria,16S,NCBI SRA,PRJNA1105425,Anthony Fodor,afodor@charlotte.edu,UNC Charlotte,Public,https://link.springer.com/article/10.1186/s40168-024-01857-2#availability-of-data-and-materials
+2024_McCumber,Effects of soil exposure on immune response,Mouse,"Fecal, Lung, Environmental",Laboratory,408,US,Bacteria,16S,NCBI SRA,PRJNA865133,Claudia K. Gunsch,ckgunsch@duke.edu,Duke University,Public,https://www.sciencedirect.com/science/article/pii/S0048969724010040?casa_token=9HG31YSjhJIAAAAA:tO0XuLgqQdrs2i93snigtFPHFJ7vJIiDhopAiUaAf2ZFTdo3EqYx3wqOGAhaJPD07SpBcO6sx14
+2025_Kim,"Relationship between bariatric surgery, asthma, and gut and lung microbiomes",Mouse,Fecal,NA,91,US,Bacteria,16S,NCBI SRA,PRJNA1111477,Jennifer L. Ingram,jennifer.ingram@duke.edu,Duke University,Public,https://www.dovepress.com/glucagon-like-peptide-1-receptor-glp1r-deficiency-does-not-appreciably-peer-reviewed-fulltext-article-JAA
+2026_Hill,Microbial communities in residential bathroom sinks,Environmental,Plumbing,Home,144,US,Bacteria,16S,NCBI SRA,PRJNA1363208,Claudia K. Gunsch,ckgunsch@duke.edu,Duke University,Public,https://www.biorxiv.org/content/10.64898/2026.02.17.706431v1
+2024_Ferdous,UNC Charlotte SARS-CoV-2 campus monitoring program,Environmental,Wastewater,Mixed Use,38,US,Viruses,RNA,NCBI SRA,PRJNA1031245,Jessica A. Schlueter,jschluet@charlotte.edu,UNC Charlotte,Public,https://www.sciencedirect.com/science/article/pii/S0048969724046631#da0005
+2026_PerezCastro,Microbial communities in residential kitchen sinks,Environmental,"Plumbing, Surface",Home,123,US,Bacteria and Fungi,16S,NCBI SRA,TBD,Liesl Jeffers-Francis,ljeffersfrancis@ncat.edu,NC A&T,Pending,In Prep
+2026_Saber,Pathogen Distribution in Bolivian Hospitals,Environmental,"Plumbing, Air, Surface",Hospital,194,Bolivia,Bacteria,16S,TBD,TBD,Joe Brown,joebrown@unc.edu,UNC Chapel Hill,Pending,In Prep
+2026_Saber,Pathogen Distribution in Bolivian Hospitals,Environmental,"Plumbing, Air",Hospital,81,Bolivia,Bacteria,WGS,TBD,TBD,Joe Brown,joebrown@unc.edu,UNC Chapel Hill,Pending,In Prep
+2026_Gottel,Pathogen Remediation in Hospital Plumbing,Environmental,Plumbing,Hospital,2234,US,Bacteria,16S,TBD,TBD,Claudia K. Gunsch,ckgunsch@duke.edu,Duke University,Pending,In Prep
+2026_Gottel,Pathogen Remediation in Hospital Plumbing,Environmental,Plumbing,Hospital,68,US,Bacteria and Fungi,Metagenomics,TBD,TBD,Claudia K. Gunsch,ckgunsch@duke.edu,Duke University,Pending,In Prep
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
