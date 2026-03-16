@@ -1,4 +1,4 @@
-# PreMiEr Dataset Repository
+# Precision Microbiome Engineering (PreMiEr) Dataset Repository
 
 A web-based catalog of microbiome datasets from PreMiEr (Precision Microbiome Engineering) research projects.
 
