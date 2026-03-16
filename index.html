@@ -361,6 +361,24 @@
             text-decoration: underline;
         }
 
+        /* PreMiEr Logo Header */
+        .logo-header {
+            background: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            border-bottom: 1px solid #dce3ea;
+        }
+
+        .logo-header img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-header a {
+            display: inline-block;
+            text-decoration: none;
+        }
+
         /* Footer note */
         .footer-note {
             padding: 16px 40px 40px;
@@ -371,14 +389,28 @@
         /* Responsive */
         @media (max-width: 900px) {
             .page-header, .stats-bar, .filter-section,
-            .results-info, .table-container, .footer-note {
+            .results-info, .table-container, .footer-note, .logo-header {
                 padding-left: 16px;
                 padding-right: 16px;
+            }
+
+            .logo-header img {
+                height: 50px;
             }
         }
     </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════════════════════
+     PreMiEr Logo Header
+═══════════════════════════════════════════════════════ -->
+<div class="logo-header">
+    <a href="https://premier-microbiome.org/" target="_blank" rel="noopener">
+        <img src="https://premier-microbiome.org/wp-content/uploads/sites/6/2025/10/PreMiEr-logo-transparent-buffer.png"
+             alt="PreMiEr - Precision Microbiome Engineering" />
+    </a>
+</div>
 
 <!-- ══════════════════════════════════════════════════════
      Page Header
